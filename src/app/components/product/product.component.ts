@@ -1,4 +1,4 @@
-import { ProductResponseModel } from './../../models/productResponseModel';
+
 import { Product } from './../../models/product';
 import { Component, OnInit } from '@angular/core';
 import { RouterOutlet } from '@angular/router';
