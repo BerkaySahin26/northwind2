@@ -1,7 +1,7 @@
 
 import { Product } from './../../models/product';
 import { Component, OnInit } from '@angular/core';
-import { RouterOutlet } from '@angular/router';
+import { ActivatedRoute, RouterOutlet } from '@angular/router';
 import { MatSelectModule } from '@angular/material/select';
 import { MatToolbarModule } from '@angular/material/toolbar';
 import { MatButtonModule } from '@angular/material/button';
@@ -35,13 +35,27 @@ export class ProductComponent implements OnInit {
   dataLoaded =false;
 
 
-  constructor( private productService:ProductService) {}
+  constructor( private productService:ProductService, private activatedRoute:ActivatedRoute) {}
 
   ngOnInit(): void {
-    this.getProducts();
+    this.activatedRoute.params.subscribe(params=>{
+      if(params["categoryId"]){
+        this.getProductsByCategory(params["categoryId"])
+      }else{
+        this.getProducts();
+      }
+    })
+
   }
   getProducts() {
     this.productService.getProducts().subscribe(response => {
+      this.products = response.data
+      this.dataLoaded =true;
+    })
+    console.log();
+  }
+  getProductsByCategory(categoryId:number) {
+    this.productService.getProductsByCategory(categoryId).subscribe(response => {
       this.products = response.data
       this.dataLoaded =true;
     })
