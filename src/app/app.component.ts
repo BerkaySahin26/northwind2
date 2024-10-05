@@ -9,6 +9,10 @@ import { MatButtonModule } from "@angular/material/button";
 import { MatCardModule } from "@angular/material/card";
 import { FormsModule } from '@angular/forms'; // NgFormModule buradan import ediliyor
 import { CommonModule } from '@angular/common';
+import { VatAddedPipe } from './pipes/vat-added.pipe';
+
+
+
 
 @Component({
   selector: 'app-root',
@@ -23,7 +27,11 @@ import { CommonModule } from '@angular/common';
     MatButtonModule,
     MatCardModule,
     FormsModule,
-    CommonModule // FormsModule burada dahil ediliyor
+    CommonModule, // FormsModule burada dahil ediliyor
+    VatAddedPipe,
+
+
+
   ],
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.css']
