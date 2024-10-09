@@ -5,7 +5,7 @@ import { MatSelectModule } from '@angular/material/select';
 import { MatToolbarModule } from '@angular/material/toolbar';
 import { MatButtonModule } from '@angular/material/button';
 import { MatCardModule } from '@angular/material/card';
-import { FormsModule } from '@angular/forms'; // NgFormModule buradan import ediliyor
+import { FormsModule, ReactiveFormsModule } from '@angular/forms'; // NgFormModule buradan import ediliyor
 import { CommonModule } from '@angular/common';
 import { HttpClient } from '@angular/common/http';
 import { response } from 'express';
@@ -33,6 +33,7 @@ import { CartService } from '../../services/cart.service';
     VatAddedPipe,
     FilterPipePipe,
     ToastrModule,
+    ReactiveFormsModule
 
 
   ],

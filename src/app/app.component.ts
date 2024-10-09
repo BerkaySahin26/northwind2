@@ -7,7 +7,7 @@ import { MatSelectModule } from "@angular/material/select";
 import { MatToolbarModule } from "@angular/material/toolbar";
 import { MatButtonModule } from "@angular/material/button";
 import { MatCardModule } from "@angular/material/card";
-import { FormsModule } from '@angular/forms'; // NgFormModule buradan import ediliyor
+import { FormsModule, ReactiveFormsModule } from '@angular/forms'; // NgFormModule buradan import ediliyor
 import { CommonModule } from '@angular/common';
 import { VatAddedPipe } from './pipes/vat-added.pipe';
 
@@ -29,6 +29,7 @@ import { VatAddedPipe } from './pipes/vat-added.pipe';
     FormsModule,
     CommonModule, // FormsModule burada dahil ediliyor
     VatAddedPipe,
+    ReactiveFormsModule
 
 
 
