@@ -19,6 +19,7 @@ export class ProductAddComponent implements OnInit {
 
   ngOnInit(): void {
     this.createProductAddForm()
+    this.add()
 
   }
   createProductAddForm(){
@@ -34,11 +35,16 @@ export class ProductAddComponent implements OnInit {
     if(this.productAddForm.valid){
     let productModel = Object.assign({},this.productAddForm.value)
     this.productService.add(productModel).subscribe(response=>{
-      console.log(response)
       this.toastr.success(response.message,"Başarılı")
     },responseError=>{
-      console.log(responseError)
-      this.toastr.error(responseError.console.error)
+      if(responseError.error.Errors.length>0){
+        for (let i = 0; i < responseError.error.Errors.length; i++) {
+          this.toastr.error(responseError.console.error.Errors[i].ErrorMessage,"Doğrulama hatası")
+
+        }
+
+      }
+
 
     })
     }else
