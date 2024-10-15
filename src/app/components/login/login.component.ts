@@ -17,7 +17,7 @@ import { log } from 'console';
 })
 export class LoginComponent implements OnInit {
   loginForm:FormGroup;
-constructor(private formBuilder:FormBuilder, private authService: AuthService){}
+constructor(private formBuilder:FormBuilder, private authService: AuthService, private toastrService:ToastrService){}
   ngOnInit(): void {
    this.createLoginForm();
   }
@@ -36,8 +36,13 @@ constructor(private formBuilder:FormBuilder, private authService: AuthService){}
       console.log(this.loginForm.value);
       let loginModel = Object.assign({},this.loginForm.value)
 
-      this.authService.login(loginModel).subscribe(data => {
-        console.log(data)
+      this.authService.login(loginModel).subscribe(response => {
+        this.toastrService.info(response.message)
+        localStorage.setItem("token",response.data.token)
+      },responseError=>{
+        //console.log(responseError)
+        this.toastrService.error(responseError.error);
+
       })
     }
   }
