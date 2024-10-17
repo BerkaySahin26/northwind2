@@ -1,13 +1,22 @@
-import { HttpEvent, HttpHandler, HttpInterceptor, HttpInterceptorFn, HttpRequest } from '@angular/common/http';
+import { HttpEvent, HttpHandler,HttpInterceptor,HttpInterceptorFn, HttpRequest } from '@angular/common/http';
+import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 
+@Injectable()
 export class AuthInterceptor implements HttpInterceptor {
-  intercept(req: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
-    let token = localStorage.getItem("token"); // Token'i localStorage'dan al
-    let newRequest : HttpRequest<any>;
-    newRequest = req.clone({
-      headers: req.headers.set("Authorization", "Bearer " + token)
-    })
-     return next.handle(newRequest); // Token yoksa orijinal isteği gönder
+  constructor() {}
+
+  intercept(
+    request: HttpRequest<unknown>,
+    next: HttpHandler
+  ): Observable<HttpEvent<unknown>> {
+    let token = localStorage.getItem("token");
+    let newRequest: HttpRequest<any>;
+    newRequest = request.clone({
+      headers: request.headers.set('Authorization', 'Bearer ' + token),
+    });
+    console.log(newRequest);
+    return next.handle(newRequest);
+
   }
 }
